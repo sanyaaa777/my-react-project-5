@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getMovieReviews } from '../../tmdbAPI';
+import { fetchReviews } from '../../tmdb/tmdbAPI';
 import styles from './MovieReviews.module.css';
 
 function MovieReviews() {
@@ -8,7 +8,7 @@ function MovieReviews() {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    getMovieReviews(movieId).then(setReviews);
+    fetchReviews(movieId).then(response => setReviews(response.data.results));
   }, [movieId]);
 
   return (

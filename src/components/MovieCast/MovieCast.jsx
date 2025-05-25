@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getMovieCredits } from '../../tmdbAPI';
+import { fetchActors } from '../../tmdb/tmdbAPI';
 import styles from './MovieCast.module.css';
 
 function MovieCast() {
@@ -8,14 +8,22 @@ function MovieCast() {
   const [cast, setCast] = useState([]);
 
   useEffect(() => {
-    getMovieCredits(movieId).then(setCast);
+    fetchActors(movieId).then(response => setCast(response.data.cast));
   }, [movieId]);
 
   return (
     <div className={styles.castContainer}>
       <ul className={styles.list}>
         {cast.map(actor => (
-          <li key={actor.cast_id}>{actor.name} as {actor.character}</li>
+          <li key={actor.cast_id}>
+            {actor.profile_path && (
+              <img
+                src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
+                alt={actor.name}
+              />
+            )}
+            <p>{actor.name} as {actor.character}</p>
+          </li>
         ))}
       </ul>
     </div>

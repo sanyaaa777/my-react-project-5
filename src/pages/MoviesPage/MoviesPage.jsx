@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { searchMovies } from '../../tmdbAPI.js';
+import { fetchByQuery } from '../../tmdb/tmdbAPI';
 import MovieList from '../../components/MovieList/MovieList';
 import styles from './MoviesPage.module.css';
 
@@ -16,7 +16,7 @@ function MoviesPage() {
   };
 
   useEffect(() => {
-    if (query) searchMovies(query).then(setMovies);
+    if (query) fetchByQuery(query).then(data => setMovies(data.results));
   }, [query]);
 
   return (
@@ -25,6 +25,9 @@ function MoviesPage() {
         <input name="query" defaultValue={query} />
         <button type="submit">Search</button>
       </form>
+      {movies.length === 0 && query && (
+        <p>No results found for "{query}".</p>
+      )}
       <MovieList movies={movies} />
     </div>
   );
