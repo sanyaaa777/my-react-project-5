@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import { getMovieDetails } from '../../services/tmdbApi';
+import { getMovieDetails } from '../../tmdbAPI';
 import MovieCast from '../../components/MovieCast/MovieCast';
 import MovieReviews from '../../components/MovieReviews/MovieReviews';
 import styles from './MovieDetailsPage.module.css';
