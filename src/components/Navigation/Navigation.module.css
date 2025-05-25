@@ -1,0 +1,16 @@
+.navContainer {
+  padding: 1rem;
+}
+
+.navList {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  text-decoration: none;
+  color: blue;
+}

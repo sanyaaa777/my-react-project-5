@@ -1,0 +1,14 @@
+.pageContainer {
+  padding: 1rem;
+}
+
+.linksContainer {
+  margin-top: 1rem;
+}
+
+.linksList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+}
